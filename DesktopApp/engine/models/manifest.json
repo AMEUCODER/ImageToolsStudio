@@ -1,0 +1,19 @@
+{
+  "models": {
+    "selfie_segmenter": {
+      "adapter": "mediapipe_selfie",
+      "description": "Person/background mask used by Blur (background mode) and later Background Removal.",
+      "requires": ["mediapipe"],
+      "file": "selfie_segmenter.tflite",
+      "url": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite",
+      "invert_mask": false
+    },
+    "yunet_face": {
+      "adapter": "opencv_yunet",
+      "description": "Face detector used by Face Blur. Falls back to a Haar cascade if the model cannot be downloaded.",
+      "requires": ["opencv-python"],
+      "file": "face_detection_yunet_2023mar.onnx",
+      "url": "https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx"
+    }
+  }
+}

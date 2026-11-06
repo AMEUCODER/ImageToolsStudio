@@ -1,0 +1,107 @@
+IMAGE_AI_STUDIO/
+│
+├── DesktopApp/
+│   ├── run_desktop.py              # launcher (python run_desktop.py)
+│   ├── pyproject.toml              # makes `engine` installable for the backend
+│   ├── requirements.txt
+│   │
+│   ├── config/
+│   │   ├── settings.py
+│   │   ├── paths.py
+│   │   └── model_config.py
+│   │
+│   ├── engine/                     # SHARED CORE (no UI code in here)
+│   │   ├── __init__.py
+│   │   ├── engine.py               # engine.run(tool, image, params)
+│   │   ├── tool_registry.py
+│   │   ├── base_tool.py            # BaseTool: name, params_schema, run()
+│   │   ├── pipeline.py
+│   │   ├── image_loader.py
+│   │   ├── image_exporter.py
+│   │   ├── device_manager.py       # CPU / GPU selection
+│   │   ├── model_manager.py
+│   │   │
+│   │   ├── schemas/                # shared data contracts
+│   │   │   ├── requests.py
+│   │   │   ├── responses.py
+│   │   │   └── validation.py
+│   │   │
+│   │   ├── tools/                  # one folder per tool
+│   │   │   ├── blur/               (tool.py, config.py)
+│   │   │   ├── background_removal/
+│   │   │   ├── object_removal/
+│   │   │   ├── inpainting/
+│   │   │   ├── outpainting/
+│   │   │   ├── upscaling/
+│   │   │   ├── colorization/
+│   │   │   ├── relighting/
+│   │   │   ├── style_transfer/
+│   │   │   └── restoration/
+│   │   │
+│   │   └── models/
+│   │       ├── manifest.json       # model names, URLs, hashes
+│   │       ├── adapters/
+│   │       └── weights/            # gitignored, downloaded on first use
+│   │
+│   ├── interface/                  # CustomTkinter UI
+│   │   ├── app.py
+│   │   ├── main_window.py
+│   │   ├── workspace.py
+│   │   ├── sidebar.py
+│   │   ├── canvas.py
+│   │   └── components/
+│   │
+│   ├── controllers/
+│   │   └── editor_controller.py    # UI → runner
+│   │
+│   ├── runners/                    # how the desktop talks to the engine
+│   │   ├── base_runner.py          # interface: run(tool, image, params)
+│   │   ├── local_runner.py         # calls engine.run() directly
+│   │   └── remote_runner.py        # calls the backend over HTTP
+│   │
+│   ├── data/                       # desktop user data (gitignored)
+│   │   ├── outputs/
+│   │   └── cache/
+│   │
+│   └── tests/
+│       ├── test_engine.py
+│       └── test_tools.py
+│
+├── backend/                        # FastAPI
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── api/
+│   │   ├── routes/
+│   │   │   ├── auth.py
+│   │   │   ├── images.py
+│   │   │   ├── tools.py            # POST /api/tools/{name}
+│   │   │   ├── jobs.py             # GET /api/jobs, /api/jobs/{id}
+│   │   │   └── models.py
+│   │   └── dependencies.py
+│   ├── services/
+│   │   ├── image_service.py        # calls engine.run()
+│   │   └── job_service.py          # queue + worker
+│   ├── middleware/
+│   ├── storage/
+│   │   ├── uploads/
+│   │   ├── outputs/
+│   │   └── temporary/
+│   └── tests/
+│       └── test_api.py
+│
+├── frontend/                       # React + TypeScript PWA (Vite)
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── editor/
+│   │   ├── services/               # API client
+│   │   ├── hooks/
+│   │   └── types/                  # generated from FastAPI OpenAPI
+│   ├── public/
+│   │   ├── manifest.json
+│   │   └── icons/
+│   ├── package.json
+│   └── vite.config.ts
+│
+├── .gitignore
+└── README.md

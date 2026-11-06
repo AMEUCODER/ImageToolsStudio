@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "image-ai-studio-engine"
+version = "0.1.0"
+description = "Shared image engine used by the desktop app and the FastAPI backend"
+requires-python = ">=3.10"
+dependencies = ["pillow>=10.0", "numpy>=1.24"]
+
+[tool.setuptools.packages.find]
+include = ["engine*"]
+
+[tool.setuptools.package-data]
+"engine.models" = ["manifest.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

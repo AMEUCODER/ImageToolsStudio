@@ -1,0 +1,7 @@
+customtkinter>=5.2
+pillow>=10.0
+numpy>=1.24
+requests>=2.31        # only needed for remote mode
+mediapipe>=0.10       # optional: Blur "background" mode
+opencv-python>=4.8,<5 # Face Blur (4.x includes the Haar fallback file)
+pytest>=8.0           # tests
