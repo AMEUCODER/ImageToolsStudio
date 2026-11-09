@@ -1,0 +1,25 @@
+# docker compose up --build   ->  open http://localhost:8080
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      IMAGE_STUDIO_TOKEN: ${IMAGE_STUDIO_TOKEN:-}
+      IMAGE_STUDIO_MAX_UPLOAD_MB: ${IMAGE_STUDIO_MAX_UPLOAD_MB:-25}
+      IMAGE_STUDIO_CONCURRENCY: ${IMAGE_STUDIO_CONCURRENCY:-1}
+    volumes:
+      - weights:/weights
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  weights:

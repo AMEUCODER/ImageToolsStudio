@@ -1,0 +1,4 @@
+-r requirements.txt
+pytest>=8.0
+httpx>=0.27          # FastAPI TestClient
+requests>=2.31       # the desktop RemoteRunner, used by the contract test

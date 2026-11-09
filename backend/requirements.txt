@@ -1,0 +1,8 @@
+# API
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+
+# Used by tools in the engine (the engine itself is installed from ../DesktopApp)
+numpy>=1.24
+opencv-python-headless>=4.8,<5      # Face Blur
