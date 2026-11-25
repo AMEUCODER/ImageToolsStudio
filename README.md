@@ -32,3 +32,16 @@ Set `IMAGE_STUDIO_TOKEN` to require a Bearer token. Model weights are kept in th
 cd backend && pip install -r requirements-dev.txt && pytest
 cd frontend && npm run typecheck
 ```
+
+## Status
+
+In development. The desktop app, the FastAPI backend and the React PWA all exist and share one engine with 7 tools: Blur, Auto Enhance, Crop, Rotate / Flip, Adjust, Text Watermark and Face Blur. See [`DesktopApp/README.md`](DesktopApp/README.md) for the engine design.
+
+## To do
+
+- [ ] Run the desktop app on a real display and fix visual issues
+- [ ] Add frontend tests (only `npm run typecheck` runs today)
+- [ ] Add a GitHub Actions workflow for the backend tests, the desktop tests and the frontend typecheck
+- [ ] Add screenshots of the desktop app and the PWA to this README
+- [ ] Add the planned tools: background removal, object removal, inpainting, outpainting, upscaling, colorization, relighting, style transfer, image to PDF, image to text
+- [ ] Update `DesktopApp/README.md`, where the status section is out of date

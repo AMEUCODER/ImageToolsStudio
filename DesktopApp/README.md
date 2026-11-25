@@ -2,7 +2,7 @@
 
 A desktop image-editing app built with **CustomTkinter**, powered by a shared Python **image engine**. The engine is also the core that the FastAPI backend and the PWA use, so every tool is written once and works in both versions.
 
-> **Status:** early development. The engine, runners, controller and interface are in place with two working tools. See [Status and roadmap](#status-and-roadmap).
+> **Status:** in development. The engine, runners, controller and interface are in place with 7 tools. See [Status and roadmap](#status-and-roadmap).
 
 ---
 
@@ -309,11 +309,10 @@ The suites cover tool discovery, parameter validation, tool behavior, pipelines,
 | Area | State |
 |---|---|
 | Engine core, registry, validation, pipeline, model manager | Working, tested |
-| Tools: Blur (whole image), Auto Enhance | Working, tested |
-| Tool: Blur (background mode) | Written, not yet run end-to-end |
+| Tools: Blur, Auto Enhance, Crop, Rotate / Flip, Adjust, Text Watermark, Face Blur | Written (7 tools); engine, controller and face blur have `pytest` tests |
 | Controller (threading, undo, reset, save) | Working, tested with a fake view |
-| CustomTkinter window | Written, not yet launched on a real display |
-| `RemoteRunner` | Written, waiting for the backend |
-| Remaining tools, FastAPI backend, React PWA | Not started |
+| CustomTkinter window | Written, not yet checked on a real display |
+| `RemoteRunner`, FastAPI backend (`../backend`) | Written; the backend has API tests |
+| React PWA (`../frontend`) | Written; only a typecheck runs |
 
-**Next steps:** run the app on a real display and fix any visual issues, add the lightweight tools (cropping, face blur, image to PDF), then build the FastAPI backend with `GET /api/tools` and `POST /api/tools/{name}`.
+**Next steps:** run the app on a real display and fix any visual issues, test the PWA against the backend, then add the planned tools listed above.
